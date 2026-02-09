@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+
+
+@font-face {
+	font-family: 'GangOfThree';
+	src: url('/fonts/GangOfThree.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+.font-gang     { font-family: 'GangOfThree', sans-serif; }
+
+/* globals.css */
+.perspective-\[600px\] {
+  perspective: 600px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
