@@ -10,15 +10,10 @@ interface PrimaryButtonProps {
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({ children, onClick, href }) => {
   const buttonContent = (
     <>
-      {/* Shine effect */}
       <span className='
-        absolute inset-0 
-        bg-gradient-to-r from-transparent via-white/30 to-transparent
-        -translate-x-full group-hover:translate-x-full
-        transition-transform duration-700 ease-out
       '/>
       {/* Button content */}
-      <span className='relative flex items-center gap-2'>
+      <span className='relative flex items-center gap-1'>
         {children}
         <svg 
           className='w-4 h-4 transition-transform duration-300 group-hover:translate-x-1' 
@@ -35,7 +30,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ children, onClick, href }
   const className = `
     group relative overflow-hidden
     bg-[#3AD51C] text-neutral-900
-    px-7 py-3.5 rounded-full
+    px-5 py-3 rounded-lg
     font-medium text-sm tracking-wide
     shadow-[0_4px_20px_rgba(58,213,28,0.4)]
     hover:shadow-[0_8px_30px_rgba(58,213,28,0.6)]

@@ -24,10 +24,10 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({ children, onClick, hr
         group-hover:text-white
       '>
         {children}
-        <svg 
-          className='w-4 h-4 transition-all duration-300 group-hover:translate-x-1 group-hover:rotate-45' 
-          fill='none' 
-          viewBox='0 0 24 24' 
+        <svg
+          className='w-4 h-4 transition-all duration-300 group-hover:translate-x-1 group-hover:rotate-45'
+          fill='none'
+          viewBox='0 0 24 24'
           stroke='currentColor'
         >
           <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M14 5l7 7m0 0l-7 7m7-7H3' />
@@ -39,7 +39,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({ children, onClick, hr
   const className = `
     group relative overflow-hidden
     bg-transparent text-neutral-900
-    px-7 py-3.5 rounded-full
+    px-5 py-2 rounded-xl
     font-medium text-sm tracking-wide
     border-2 border-neutral-900
     transition-all duration-300 ease-out
