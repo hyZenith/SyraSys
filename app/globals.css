@@ -1,22 +1,81 @@
 @import "tailwindcss";
 
-
-
-@font-face {
-	font-family: 'GangOfThree';
-	src: url('/fonts/GangOfThree.ttf') format('truetype');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+/* ── Smooth scroll ── */
+html {
+  scroll-behavior: smooth;
 }
 
-.font-gang     { font-family: 'GangOfThree', sans-serif; }
-
-/* globals.css */
-.perspective-\[600px\] {
-  perspective: 600px;
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4c0b4;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9e9a8e;
 }
 
-.transform-style-preserve-3d {
-  transform-style: preserve-3d;
+/* ── Hero heading clamp ── */
+.hero-heading {
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 900;
+}
+
+/* ── Fade-in animation ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.35s; }
+.animate-delay-4 { animation-delay: 0.5s; }
+.animate-delay-5 { animation-delay: 0.65s; }
+
+/* ── Logo marquee ── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* ── Floating sidebar icon hover ── */
+.sidebar-icon {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sidebar-icon:hover {
+  background: #171717;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* ── Orange accent pulse ── */
+@keyframes pulse-orange {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
+}
+
+.pulse-orange {
+  animation: pulse-orange 2s ease-in-out infinite;
 }

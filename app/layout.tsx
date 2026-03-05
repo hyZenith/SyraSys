@@ -1,18 +1,7 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Sidebar from "../components/Sidebar";
-import Header from "@/components/Header";
-
-const byteSharp = localFont({
-  src: "../public/fonts/byte-sharp.otf",
-  variable: "--font-byte-sharp",
-  display: "swap",
-});
-
-
-
-
+import Navbar from "@/components/Navbar";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export default function RootLayout({
   children,
@@ -20,11 +9,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" > 
-      <body className={`${byteSharp.variable} antialiased overflow-hidden`}>
+    <html lang="en">
+      <body className="antialiased bg-[#f2f0f8] text-neutral-900">
+        <Navbar />
         <Sidebar />
-        <Header />
-        <main className="ml-64 h-screen overflow-y-auto">
+        <ScrollProgress />
+        <main className="min-h-screen">
           {children}
         </main>
       </body>
