@@ -1,39 +1,97 @@
-import Header from '@/components/Header'
-import React from 'react'
-import Dragon3D from '@/components/Dragon3D'
+"use client";
+import React, { useEffect, useState } from "react";
+import { Phone, ArrowUpRight } from "lucide-react";
+
+//use the logo's instead of text
+const partners = [
+  "TechCorp",
+  "NovaPay",
+  "CloudBase",
+  "FinEdge",
+  "DataLoop",
+  "ScaleAI",
+];
 
 const Hero = () => {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const tick = () => {
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        })
+      );
+    };
+    tick();
+    const id = setInterval(tick, 60_000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
-    <div className=''>
-      <section className="grid grid-cols-2 h-screen items-start  ">
-        <div className='h-screen bg-white flex flex-col justify-center items-center'>
-          <h1 className="text-[8vw] font-gang tracking-tighter text-neutral-900 leading-[0.9] flex items-center flex-col z-10">
-            Built to be
-            {/* <div className="absolute top-101 w-[700px]  h-3 bg-[#46e127] -z-10 rounded-sm"></div> */}
-            {/* <br /> */}
-            <span className="relative inline-block font-gang">felt</span>
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col justify-between px-6 md:px-20 lg:px-28 pt-28 pb-8 overflow-hidden bg-[#d4cde8] m-1 rounded-xl"
+    >
+      {/* ─── HERO HEADING ─── */}
+      <div className="flex-1 flex items-center justify-center">
+        <div className="max-w-6xl w-full text-center">
+          <h1 className="hero-heading text-neutral-900 opacity-0 animate-fade-in-up animate-delay-1">
+            Crafted to Impress,
+            <br />
+            Engineered to <span className="text-neutral-400 line-through"> Perform.</span>
           </h1>
-          <p className="text-base text-neutral-600 max-w-md leading-relaxed text-center">
-            Experience design that resonates on a deeper level,
-            where form and function unite in perfect harmony.
-          </p>
-
-          <div className='flex gap-4 mt-7'>
-            <button className='bg-[#3DFF17] text-black px-4 py-2 rounded'>
-            View Our Work
-            </button>
-            <button className='bg-white text-black border border-black px-4 py-2 rounded'>
-              Our Approach
-            </button>
-          </div>
-
         </div>
-        {/* <div className='h-screen bg-white bg-center bg-no-repeat' > */}
-        {/* </div> */}
-      </section>
-    </div>
+      </div>
 
-  )
-}
+      {/* ─── PARTNER LOGOS STRIP ─── */}
+      <div className="w-full max-w-3xl mx-auto mt-12 mb-10 opacity-0 animate-fade-in-up animate-delay-2 overflow-hidden">
+        <div className="flex items-center gap-12 animate-marquee whitespace-nowrap">
+          {[...partners, ...partners].map((name, i) => (
+            <span
+              key={i}
+              className="text-neutral-400 font-semibold text-sm md:text-base tracking-widest uppercase select-none"
+            >
+              {name}
+            </span>
+          ))}
+        </div>
+      </div>
 
-export default Hero
+      {/* ─── SUBTEXT + CTA ─── */}
+      <div className="flex flex-col items-center text-center mb-16">
+        <p className="max-w-xl text-lg md:text-xl text-neutral-600 leading-relaxed opacity-0 animate-fade-in-up animate-delay-3">
+          High-impact design. Precision development. Digital products built to stand out and perform at scale.
+        </p>
+
+        <div className="mt-8 flex items-center gap-4 opacity-0 animate-fade-in-up animate-delay-4">
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2 text-sm md:text-base font-bold uppercase tracking-widest
+                       text-neutral-900 hover:text-orange-600 transition-colors duration-200"
+          >
+            Book an Intro Call
+            <ArrowUpRight
+              className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              strokeWidth={2.5}
+            />
+          </a>
+
+          {/* Avatar stack */}
+          <div className="flex -space-x-2">
+            <span className="w-9 h-9 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 ring-2 ring-[#f2f0f8] flex items-center justify-center text-white text-xs font-bold">
+              S
+            </span>
+            <span className="w-9 h-9 rounded-full bg-neutral-900 ring-2 ring-[#f2f0f8] flex items-center justify-center">
+              <Phone className="w-4 h-4 text-white" strokeWidth={2} />
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
