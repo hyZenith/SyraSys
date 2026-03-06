@@ -1,6 +1,23 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Phone, ArrowUpRight } from "lucide-react";
+import { Poppins } from 'next/font/google'
+import localFont from 'next/font/local'
+
+const PoppinsFont = Poppins({
+  subsets: ['latin'],
+  weight: ['200', '400'],
+})
+
+const ppmori = localFont({
+  src: '../public/fonts/PPMori-Regular.woff2',
+  weight: '400',
+})
+
+const thunder = localFont({
+  src: '../public/fonts/Thunder-ExtraBoldLCItalic.woff2',
+  weight: '700',
+})
 
 //use the logo's instead of text
 const partners = [
@@ -33,15 +50,15 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-between px-6 md:px-20 lg:px-28 pt-28 pb-8 overflow-hidden bg-[#d4cde8] m-1 rounded-xl"
+      className="relative min-h-screen flex flex-col justify-between px-6 md:px-20 lg:px-28 pt-28 pb-8 overflow-hidden bg-[#e2e0da] m-1 rounded-xl"
     >
       {/* ─── HERO HEADING ─── */}
       <div className="flex-1 flex items-center justify-center">
         <div className="max-w-6xl w-full text-center">
-          <h1 className="hero-heading text-neutral-900 opacity-0 animate-fade-in-up animate-delay-1">
+          <h1 className="hero-heading text-neutral-900 opacity-0 animate-fade-in-up animate-delay-1  " style={{ fontFamily: ppmori.style.fontFamily }}>
             Crafted to Impress,
             <br />
-            Engineered to <span className="text-neutral-400 line-through"> Perform.</span>
+            Engineered to <span className="text-neutral-400 line-through "> Perform.</span>
           </h1>
         </div>
       </div>
@@ -62,7 +79,7 @@ const Hero = () => {
 
       {/* ─── SUBTEXT + CTA ─── */}
       <div className="flex flex-col items-center text-center mb-16">
-        <p className="max-w-xl text-lg md:text-xl text-neutral-600 leading-relaxed opacity-0 animate-fade-in-up animate-delay-3">
+        <p className="max-w-xl text-lg md:text-xl text-neutral-600 leading-relaxed opacity-0 animate-fade-in-up animate-delay-3" style={{ fontFamily: ppmori.style.fontFamily }}>
           High-impact design. Precision development. Digital products built to stand out and perform at scale.
         </p>
 
