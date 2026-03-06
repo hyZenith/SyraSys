@@ -5,9 +5,9 @@ import StackScene from "@/components/stacks/StackScene";
 const services = [
   { id: "web", label: "Web Development" },
   { id: "mobile", label: "Mobile Apps" },
-  { id: "cloud", label: "Cloud Solutions" },
-  { id: "api", label: "API & Backend" },
-  { id: "ai", label: "AI Integration" },
+  { id: "cloud", label: "Custom CRM" },
+  { id: "api", label: "Branding" },
+  { id: "ai", label: "Automation" },
 ];
 
 const features = [
@@ -26,6 +26,9 @@ export default function Services() {
       id="services"
       className="relative px-6 lg:px-16 py-20 md:py-28 flex justify-center items-center min-h-screen overflow-hidden"
     >
+      <p className="absolute top-8 left-6 lg:left-16 text-xs text-neutral-400 tracking-widest font-mono">
+        01 — Our Services
+      </p>
       <div className="w-full max-w-7xl flex justify-center items-center relative">
 
         {/* ── LEFT NAV (desktop) ── */}
