@@ -50,8 +50,50 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-between px-6 md:px-20 lg:px-28 pt-28 pb-8 overflow-hidden bg-[#e2e0da] m-1 rounded-xl"
+      className="relative min-h-screen flex flex-col justify-between px-6 md:px-20 lg:px-28 pt-28 pb-8 overflow-hidden bg-white m-1 rounded-2xl"
     >
+      {/* ─── HEXAGON GRID BACKGROUND ─── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <svg
+          className="absolute inset-0 w-full h-full opacity-[0.07]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="hex-pattern"
+              x="0"
+              y="0"
+              width="56"
+              height="97"
+              patternUnits="userSpaceOnUse"
+            >
+              {/* column 1 */}
+              <polygon
+                points="28,1 54,15.5 54,48.5 28,63 2,48.5 2,15.5"
+                fill="none"
+                stroke="#000"
+                strokeWidth="1"
+              />
+              {/* column 2 — offset row */}
+              <polygon
+                points="28,49 54,63.5 54,96.5 28,111 2,96.5 2,63.5"
+                fill="none"
+                stroke="#000"
+                strokeWidth="1"
+              />
+              {/* half hex far right col 1 */}
+              <polygon
+                points="56,1 56,15.5 56,48.5 56,63 56,15.5"
+                fill="none"
+                stroke="#000"
+                strokeWidth="1"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hex-pattern)" />
+        </svg>
+      </div>
+
       {/* ─── HERO HEADING ─── */}
       <div className="flex-1 flex items-center justify-center">
         <div className="max-w-6xl w-full text-center">

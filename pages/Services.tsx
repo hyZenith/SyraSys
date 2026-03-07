@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import StackScene from "@/components/stacks/StackScene";
 
 const services = [
@@ -24,64 +25,70 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative px-6 lg:px-16 py-20 md:py-28 flex justify-center items-center min-h-screen overflow-hidden"
+      className="relative ml-[140px] px-10 py-20 md:py-28 flex justify-center items-center min-h-screen overflow-hidden"
     >
-      <p className="absolute top-8 left-6 lg:left-16 text-xs text-neutral-400 tracking-widest font-mono">
+      <p className="absolute top-8 left-10 text-xs text-neutral-400 tracking-widest font-mono">
         01 — Our Services
       </p>
-      <div className="w-full max-w-7xl flex justify-center items-center relative">
+      <div className="w-full flex items-center gap-8">
 
-        {/* ── LEFT NAV (desktop) ── */}
-        <div className="hidden md:flex absolute left-0 top-0 bottom-0 justify-center flex-col w-48 gap-5">
-          {services.map((svc) => {
-            const isActive = svc.id === active;
-            return (
+        {/* ── LEFT: SVG / illustration ── */}
+        <div className="hidden md:flex w-1/2 shrink-0 items-center justify-center">
+          <Image
+            src="/assets/code.jpg"
+            alt="Service illustration"
+            width={520}
+            height={380}
+            className="object-contain w-full h-auto"
+          />
+        </div>
+
+        {/* ── RIGHT: nav (left) + visual (right) ── */}
+        <div className="flex-1 flex flex-row items-center justify-center gap-10 relative">
+
+          {/* Desktop nav — left of cards */}
+          <div className="hidden md:flex flex-col gap-5 shrink-0">
+            {services.map((svc) => {
+              const isActive = svc.id === active;
+              return (
+                <button
+                  key={svc.id}
+                  onClick={() => setActive(svc.id)}
+                  className={`group relative flex items-center gap-3 font-mono uppercase text-xs text-left transition-colors duration-200 ${isActive ? "text-neutral-900" : "text-neutral-400 hover:text-neutral-600"
+                    }`}
+                >
+                  {svc.label}
+                  {isActive && (
+                    <span className="flex items-center">
+                      <span className="block h-[1px] w-12 bg-neutral-900" />
+                      <span className="block w-[6px] h-[6px] border border-neutral-900 rotate-45 -ml-[3px]" />
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Visual */}
+          <div className="flex items-center justify-center">
+            <StackScene activeId={active} />
+          </div>
+
+          {/* Mobile nav */}
+          <div className="flex md:hidden absolute bottom-0 left-0 right-0 justify-center gap-3 flex-wrap pb-2">
+            {services.map((svc) => (
               <button
                 key={svc.id}
                 onClick={() => setActive(svc.id)}
-                className={`group relative flex items-center gap-3 font-mono uppercase text-xs text-left transition-colors duration-200 ${isActive ? "text-neutral-900" : "text-neutral-400 hover:text-neutral-600"
+                className={`text-[10px] font-mono uppercase px-2 py-1 border rounded-full transition-colors ${svc.id === active
+                  ? "border-neutral-900 text-neutral-900"
+                  : "border-neutral-300 text-neutral-400"
                   }`}
               >
                 {svc.label}
-                {isActive && (
-                  <span className="absolute -right-4 top-1/2 -translate-y-1/2 flex items-center">
-                    <span className="block h-[1px] w-12 bg-neutral-900" />
-                    <span className="block w-[6px] h-[6px] border border-neutral-900 rotate-45 -ml-[3px]" />
-                  </span>
-                )}
               </button>
-            );
-          })}
-        </div>
-
-        {/* ── CENTER VISUAL ── */}
-        <div className="flex items-center justify-center">
-          <StackScene activeId={active} />
-        </div>
-
-        {/* ── RIGHT FEATURES (desktop) ── */}
-        <ul className="hidden md:flex absolute right-0 top-0 bottom-0 items-center justify-end w-56 pointer-events-none">
-          <div className="flex flex-col gap-4 font-mono uppercase text-right text-xs text-neutral-500">
-            {features.map((f, i) => (
-              <li key={i} className="leading-snug">{f}</li>
             ))}
           </div>
-        </ul>
-
-        {/* ── MOBILE NAV ── */}
-        <div className="flex md:hidden absolute bottom-0 left-0 right-0 justify-center gap-3 flex-wrap pb-2">
-          {services.map((svc) => (
-            <button
-              key={svc.id}
-              onClick={() => setActive(svc.id)}
-              className={`text-[10px] font-mono uppercase px-2 py-1 border rounded-full transition-colors ${svc.id === active
-                ? "border-neutral-900 text-neutral-900"
-                : "border-neutral-300 text-neutral-400"
-                }`}
-            >
-              {svc.label}
-            </button>
-          ))}
         </div>
       </div>
     </section>
