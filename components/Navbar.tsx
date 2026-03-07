@@ -29,7 +29,7 @@ const Header: React.FC = () => {
             <div className={`fixed top-4 right-4 z-50 flex items-center gap-3 ${hexOpen ? "" : ""}`}>
 
                 {/* OUTER WHITE PILL CONTAINER */}
-                <div className={`p-1.5 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.1)] transition-opacity duration-300 ${hexOpen ? "opacity-30" : "opacity-100"}`}>
+                <div className={`p-1.5 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.1)] transition-opacity duration-300 flex items-center gap-2 ${hexOpen ? "opacity-30" : "opacity-100"}`}>
 
                     {/* INNER DARK PILL */}
                     <div className="relative w-[180px] h-11 rounded-full bg-neutral-900 overflow-hidden">
@@ -101,7 +101,6 @@ const Header: React.FC = () => {
 
                         </div>
                     </div>
-                </div>
 
 
                 {/* RIGHT ACTION BUTTON + RADIAL HEX MENU */}
@@ -266,6 +265,8 @@ const Header: React.FC = () => {
                         <Hexagon className="w-5 h-5 text-white" strokeWidth={1.5} />
                     </button>
                 </div>
+
+                </div>{/* end white pill */}
 
 
             </div>

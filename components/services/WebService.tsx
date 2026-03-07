@@ -2,6 +2,9 @@ import React from "react";
 
 const WebService = () => (
     <g style={{ pointerEvents: "auto" }}>
+        <rect x="-0.00285524" y="0.495269" width="319" height="207" rx="15.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 182.681 21.2223)" fill="#93c5fd"></rect>
+        
+        <rect width="320" height="208" rx="16" transform="matrix(0.865865 0.500278 -0.871576 0.490261 181.962 16.9684)" fill="#dbeafe"></rect>
         <g clipPath="url(#clip0_18255_16279)">
             <rect width="320" height="208" rx="16" transform="matrix(0.865865 0.500278 -0.871576 0.490261 181.962 16.9684)" fill="#dbeafe"></rect>
             <g clipPath="url(#clip1_18255_16279)">
@@ -47,6 +50,13 @@ const WebService = () => (
                 <rect width="7" height="7" rx="3.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 115.374 114.651)" fill="#93c5fd"></rect>
             </g>
         </g>
+        <rect x="-0.00285524" y="0.495269" width="307" height="181" rx="9.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 170.157 30.0292)" stroke="#3b82f6"></rect>
+        <rect x="-0.00285524" y="0.495269" width="5" height="5" rx="2.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 185.811 27.1477)" fill="#bfdbfe"></rect>
+        <rect x="-0.00285524" y="0.495269" width="5" height="5" rx="2.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 185.811 27.1477)" stroke="#3b82f6"></rect>
+        <rect x="-0.00285524" y="0.495269" width="5" height="5" rx="2.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 194.469 32.1505)" fill="#bfdbfe"></rect>
+        <rect x="-0.00285524" y="0.495269" width="5" height="5" rx="2.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 194.469 32.1505)" stroke="#3b82f6"></rect>
+        <rect x="-0.00285524" y="0.495269" width="5" height="5" rx="2.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 203.128 37.1532)" fill="#bfdbfe"></rect>
+        <rect x="-0.00285524" y="0.495269" width="5" height="5" rx="2.5" transform="matrix(0.865865 0.500278 -0.871576 0.490261 203.128 37.1532)" stroke="#3b82f6"></rect>
         <defs>
             <clipPath id="clip0_18255_16279"><rect width="320" height="208" rx="16" transform="matrix(0.865865 0.500278 -0.871576 0.490261 181.962 16.9684)" fill="white"></rect></clipPath>
             <clipPath id="clip1_18255_16279"><rect width="308" height="182" rx="10" transform="matrix(0.865865 0.500278 -0.871576 0.490261 169.725 29.7753)" fill="white"></rect></clipPath>
