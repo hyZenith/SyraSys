@@ -45,10 +45,10 @@ export default function Footer() {
           {/* Logo */}
           <div className="flex items-center gap-2 mb-10">
             <Image
-              src="/assets/SyraSysLogo.png"
+              src="/assets/logo.png"
               alt="SyraSys"
-              width={28}
-              height={28}
+              width={90}
+              height={90}
               className="object-contain"
             />
             <span className="text-sm font-semibold text-neutral-800 tracking-wide">
@@ -147,8 +147,9 @@ export default function Footer() {
       </div>
       </div>
 
+
       {/* ── Bottom bar ── */}
-      <div className="max-w-6xl mx-auto mt-16 pt-5 border-t border-neutral-300/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto pt-5 border-t border-neutral-300/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <p className="text-xs text-neutral-400">
           © SyraSys 2026. All rights reserved&nbsp;
           <span className="mx-1 text-neutral-500">•</span>
