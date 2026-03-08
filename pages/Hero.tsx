@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { Phone, ArrowUpRight } from "lucide-react";
 import { Poppins } from 'next/font/google'
 import localFont from 'next/font/local'
@@ -52,6 +53,17 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen flex flex-col justify-between px-6 md:px-20 lg:px-28 pt-28 pb-8 overflow-hidden bg-white m-1 rounded-2xl"
     >
+      {/* ─── TOP LEFT LOGO ─── */}
+      <div className="absolute top-1 left-4 z-10">
+        <Image
+          src="/assets/logo.png"
+          alt="SyraSys Logo"
+          width={150}
+          height={150}
+          className="object-contain opacity-80"
+        />
+      </div>
+
       {/* ─── HEXAGON GRID BACKGROUND ─── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <svg
