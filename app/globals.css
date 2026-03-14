@@ -5,19 +5,13 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Custom scrollbar ── */
+/* ── Hide scrollbar ── */
 ::-webkit-scrollbar {
-  width: 4px;
+  display: none;
 }
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #c4c0b4;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #9e9a8e;
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
 /* ── Hero heading clamp ── */
