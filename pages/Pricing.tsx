@@ -241,7 +241,12 @@ export default function Pricing() {
                             })}
                         </div>
 
-                        <div className="relative rounded-[22px] bg-[#0f1211] px-5 pb-5 pt-4 text-white shadow-[0_22px_60px_rgba(4,8,7,0.45)] md:px-6 md:pb-6 md:pt-5">
+                        <div className="relative rounded-[22px] bg-[#0f1211] px-5 pb-5 pt-10 text-white shadow-[0_22px_60px_rgba(4,8,7,0.45)] md:px-6 md:pb-6 md:pt-11">
+                            <div className="absolute left-5 top-4 z-30 flex items-center gap-2.5">
+                                <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57] shadow-[0_0_0_1px_rgba(0,0,0,0.2)]" />
+                                <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e] shadow-[0_0_0_1px_rgba(0,0,0,0.2)]" />
+                                <span className="h-2.5 w-2.5 rounded-full bg-[#28c840] shadow-[0_0_0_1px_rgba(0,0,0,0.2)]" />
+                            </div>
 
                             <div className="relative overflow-visible rounded-[18px] bg-[#121615] p-3">
                                 <article
