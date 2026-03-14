@@ -140,8 +140,7 @@ const Hero = () => {
         <div className="mt-8 flex items-center gap-4 opacity-0 animate-fade-in-up animate-delay-4">
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 text-sm md:text-base font-bold uppercase tracking-widest
-                       text-neutral-900 hover:text-orange-600 transition-colors duration-200"
+            className="group inline-flex items-center gap-2 text-sm md:text-base font-bold uppercase tracking-widest text-neutral-900 hover:text-orange-600 transition-colors duration-200"
           >
             Book an Intro Call
             <ArrowUpRight
