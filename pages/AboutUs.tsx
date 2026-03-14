@@ -47,7 +47,7 @@ export default function AboutUs() {
             </h2>
           </div>
           <span className="">startups with</span>
-          <span className="pl-20">effective promotion</span>
+          <span className="pl-20">effective Tech Soln</span>
           <div className="flex flex-row items-start gap-4">
             <span className="">strategies</span>
             <p
