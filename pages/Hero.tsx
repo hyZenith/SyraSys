@@ -110,9 +110,9 @@ const Hero = () => {
       <div className="flex-1 flex items-center justify-center">
         <div className="max-w-6xl w-full text-center">
           <h1 className="hero-heading text-neutral-900 opacity-0 animate-fade-in-up animate-delay-1  " style={{ fontFamily: ppmori.style.fontFamily }}>
-            Crafted to Impress,
-            <br />
-            Engineered to <span className="text-neutral-400 line-through "> Perform.</span>
+            <span className="block">Crafted to Impress,</span>
+            <span className="mt-2 mb-4 block">Engineered to </span>
+            <span className="text-neutral-400 line-through "> Perform.</span>
           </h1>
         </div>
       </div>
