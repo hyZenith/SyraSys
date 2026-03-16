@@ -344,7 +344,6 @@
 //   )
 // }
 
-
 "use client"
 
 import { useRef, useEffect } from "react"
@@ -353,9 +352,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function CardStackStory() {
+export default function CardStackCenterReveal() {
 
   const containerRef = useRef<HTMLDivElement>(null)
+  const stackRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement[]>([])
   const detailsRef = useRef<HTMLDivElement[]>([])
 
@@ -366,28 +366,40 @@ export default function CardStackStory() {
       const cards = cardsRef.current
       const details = detailsRef.current
 
+      // CSS absolute offsets and flat dimensions for each card (matches JSX)
+      const cardMeta = [
+        { left: 120, top: 40,  w: 320, h: 440 },
+        { left: 150, top: 90,  w: 320, h: 440 },
+        { left: 180, top: 140, w: 320, h: 440 },
+      ]
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=4000",
-          scrub: true,
+          end: "+=4200",
+          scrub: 1,
           pin: true
         }
       })
 
       cards.forEach((card, i) => {
 
-        // expand + move left
+        const { left: cL, top: cT, w, h } = cardMeta[i]
+
+        /* expand + center */
+
         tl.to(card, {
           rotateX: 0,
           rotateZ: 0,
-          x: -260,
-          y: -80,
-          z: 250,
-          scale: 1.2,
+          // Use stackRef (stable — never animated) + known card CSS offsets
+          // so the target doesn't shift as the card moves
+          x: () => window.innerWidth  / 2 - stackRef.current!.getBoundingClientRect().left - cL - w / 2,
+          y: () => window.innerHeight / 2 - stackRef.current!.getBoundingClientRect().top  - cT - h / 2,
+          z: 350,
+          scale: 1.15,
           duration: 1,
-          ease: "power2.out"
+          ease: "power3.out"
         })
 
         tl.to(details[i], {
@@ -396,7 +408,8 @@ export default function CardStackStory() {
           duration: 0.5
         }, "<")
 
-        // return to stack
+        /* return */
+
         tl.to(card, {
           rotateX: 55,
           rotateZ: -22,
@@ -405,7 +418,7 @@ export default function CardStackStory() {
           z: 0,
           scale: 1,
           duration: 1,
-          ease: "power2.in"
+          ease: "power3.inOut"
         })
 
         tl.to(details[i], {
@@ -427,86 +440,94 @@ export default function CardStackStory() {
     <section
       ref={containerRef}
       className="relative h-screen flex items-center justify-center"
-      style={{ perspective: "1400px" }}
+      style={{ perspective: "1700px" }}
     >
 
-      <div className="flex items-center gap-24">
+      <div className="flex items-center gap-32">
 
         {/* CARD STACK */}
+
         <div
-          className="relative w-[420px] h-[420px]"
+          ref={stackRef}
+          className="relative w-[520px] h-[520px]"
           style={{ transformStyle: "preserve-3d" }}
         >
 
           {/* CARD 1 */}
           <div
-            ref={(el) => el && (cardsRef.current[0] = el)}
-            className="absolute left-[80px] top-[20px] w-[240px] h-[340px]
+            ref={(el) => { if (el) cardsRef.current[0] = el }}
+            className="absolute left-[120px] top-[40px]
+            w-[320px] h-[440px]
             rounded-3xl border border-white/20
             bg-white/10 backdrop-blur-xl
-            shadow-[0_40px_80px_rgba(0,0,0,0.45)] will-change-transform"
+            shadow-[0_40px_100px_rgba(0,0,0,0.45)]
+            will-change-transform"
             style={{
-              transform: "rotateX(55deg) rotateZ(-22deg) translateZ(60px)"
+              transform: "rotateX(55deg) rotateZ(-22deg) translateZ(80px)"
             }}
           />
 
           {/* CARD 2 */}
           <div
-            ref={(el) => el && (cardsRef.current[1] = el)}
-            className="absolute left-[100px] top-[70px] w-[240px] h-[340px]
+            ref={(el) => { if (el) cardsRef.current[1] = el }}
+            className="absolute left-[150px] top-[90px]
+            w-[320px] h-[440px]
             rounded-3xl border border-white/15
             bg-white/5 backdrop-blur-lg
-            shadow-[0_30px_70px_rgba(0,0,0,0.45)] will-change-transform"
+            shadow-[0_30px_80px_rgba(0,0,0,0.45)]
+            will-change-transform"
             style={{
-              transform: "rotateX(55deg) rotateZ(-22deg) translateZ(-20px)"
+              transform: "rotateX(55deg) rotateZ(-22deg) translateZ(-10px)"
             }}
           />
 
           {/* CARD 3 */}
           <div
-            ref={(el) => el && (cardsRef.current[2] = el)}
-            className="absolute left-[120px] top-[120px] w-[240px] h-[340px]
+            ref={(el) => { if (el) cardsRef.current[2] = el }}
+            className="absolute left-[180px] top-[140px]
+            w-[320px] h-[440px]
             rounded-3xl border border-white/10
             bg-[#d7ff5f]
-            shadow-[0_30px_80px_rgba(0,0,0,0.5)] will-change-transform"
+            shadow-[0_30px_90px_rgba(0,0,0,0.5)]
+            will-change-transform"
             style={{
-              transform: "rotateX(55deg) rotateZ(-22deg) translateZ(-100px)"
+              transform: "rotateX(55deg) rotateZ(-22deg) translateZ(-120px)"
             }}
           />
 
         </div>
 
-        {/* DETAILS PANEL */}
+        {/* DETAILS */}
 
-        <div className="w-[420px] relative">
+        <div className="relative w-[420px]">
 
           <div
-            ref={(el) => el && (detailsRef.current[0] = el)}
+            ref={(el) => { if (el) detailsRef.current[0] = el }}
             className="absolute opacity-0 translate-x-10"
           >
             <h2 className="text-3xl font-bold mb-3">Feature One</h2>
             <p className="text-white/70">
-              Description for the first card. This content appears when the card expands.
+              First card details appear while the card is centered.
             </p>
           </div>
 
           <div
-            ref={(el) => el && (detailsRef.current[1] = el)}
+            ref={(el) => { if (el) detailsRef.current[1] = el }}
             className="absolute opacity-0 translate-x-10"
           >
             <h2 className="text-3xl font-bold mb-3">Feature Two</h2>
             <p className="text-white/70">
-              Description for the second card.
+              Second card details appear.
             </p>
           </div>
 
           <div
-            ref={(el) => el && (detailsRef.current[2] = el)}
+            ref={(el) => { if (el) detailsRef.current[2] = el }}
             className="absolute opacity-0 translate-x-10"
           >
             <h2 className="text-3xl font-bold mb-3">Feature Three</h2>
             <p className="text-white/70">
-              Description for the third card.
+              Third card details appear.
             </p>
           </div>
 
