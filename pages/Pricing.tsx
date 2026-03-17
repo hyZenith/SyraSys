@@ -187,7 +187,7 @@ export default function Pricing() {
     );
 
     return (
-        <section id="pricing" className="w-full  bg-[#f4f5f4] p-4 text-[#0d0f0e] shadow-[0_24px_60px_rgba(0,0,0,0.08)] ">
+        <section id="pricing" className="w-full  bg-[#f4f5f4] p-4 py-10 text-[#0d0f0e] shadow-[0_24px_60px_rgba(0,0,0,0.08)] ">
             <div className=" ml-10   rounded-3xl bg-[#b0dbb0] p-5 ring-1 ring-[#e7ebe7] md:p-7">
                 <header className="mb-7 ml-10 flex items-center justify-between">
                     <h2 className="text-lg font-semibold tracking-tight md:text-xl">SyraSys Pricing</h2>
