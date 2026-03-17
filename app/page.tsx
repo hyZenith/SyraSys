@@ -1,6 +1,7 @@
 import AboutUs from "@/pages/AboutUs";
 import Footer from "@/pages/Footer";
 import Hero from "@/pages/Hero";
+import LatestCases from "@/pages/latestCases";
 import Portfolio from "@/pages/Portfolio";
 import Pricing from "@/pages/Pricing";
 import Services from "@/pages/Services";
@@ -13,8 +14,8 @@ export default function Home() {
       <Pricing />
       <AboutUs />
       <Portfolio />
+      <LatestCases />
       <Footer />
-      
     </>
   );
 }
