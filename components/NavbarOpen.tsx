@@ -167,8 +167,8 @@ export default function NavbarOpen({ onClose }: NavbarOpenProps) {
                                     </span>
                                     <div>
                                         <p className="text-lg font-medium text-white">Contact address</p>
-                                        <p className="mt-1 text-sm text-white/60">701 Sondanella, 18th floor,</p>
-                                        <p className="text-sm text-white/60">Gunsberg, Switzerland</p>
+                                        <p className="mt-1 text-sm text-white/60">Chiring Sapori,</p>
+                                        <p className="text-sm text-white/60">Dibrugarh, 786002</p>
                                     </div>
                                 </section>
                             </div>

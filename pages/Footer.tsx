@@ -106,7 +106,7 @@ export default function Footer() {
               hello@syrasys.com
             </a>
             <p className="text-sm text-neutral-400 mt-5 leading-relaxed max-w-55">
-              Dubai, UAE<br />Business Bay,<br />Level 14
+              Chiring Sapori,<br />Dibrugarh, 786002
             </p>
           </div>
 
