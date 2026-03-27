@@ -5,6 +5,7 @@ import LatestCases from "@/pages/latestCases";
 import Portfolio from "@/pages/Portfolio";
 import Pricing from "@/pages/Pricing";
 import Services from "@/pages/Services";
+import Testimonials from "@/pages/Testimonials";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Pricing />
       <AboutUs />
       <Portfolio />
+      <Testimonials />
       <LatestCases />
       <Footer />
     </>
