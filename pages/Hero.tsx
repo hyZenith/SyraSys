@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Phone, ArrowUpRight } from "lucide-react";
 import { Poppins } from 'next/font/google'
 import localFont from 'next/font/local'
+import ButtonV2 from "@/components/ButtonV2";
 
 const PoppinsFont = Poppins({
   subsets: ['latin'],
@@ -137,27 +137,8 @@ const Hero = () => {
           High-impact design. Precision development. Digital products built to stand out and perform at scale.
         </p>
 
-        <div className="mt-8 flex items-center gap-4 opacity-0 animate-fade-in-up animate-delay-4">
-          <a
-            href="#contact"
-            className="group inline-flex items-center gap-2 text-sm md:text-base font-bold uppercase tracking-widest text-neutral-900 hover:text-orange-600 transition-colors duration-200"
-          >
-            Book an Intro Call
-            <ArrowUpRight
-              className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              strokeWidth={2.5}
-            />
-          </a>
-
-          {/* Avatar stack */}
-          <div className="flex -space-x-2">
-            <span className="w-9 h-9 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 ring-2 ring-[#f2f0f8] flex items-center justify-center text-white text-xs font-bold">
-              S
-            </span>
-            <span className="w-9 h-9 rounded-full bg-neutral-900 ring-2 ring-[#f2f0f8] flex items-center justify-center">
-              <Phone className="w-4 h-4 text-white" strokeWidth={2} />
-            </span>
-          </div>
+        <div className="mt-8 opacity-0 animate-fade-in-up animate-delay-4">
+          <ButtonV2 href="#contact" label="Book a demo" />
         </div>
       </div>
     </section>
