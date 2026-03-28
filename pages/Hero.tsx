@@ -138,7 +138,7 @@ const Hero = () => {
         </p>
 
         <div className="mt-8 opacity-0 animate-fade-in-up animate-delay-4">
-          <ButtonV2 href="#contact" label="Book a demo" />
+          <ButtonV2 href="#contact" label="Book an Appointment" />
         </div>
       </div>
     </section>
