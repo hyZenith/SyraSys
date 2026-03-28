@@ -28,7 +28,7 @@ const Header: React.FC = () => {
             <div className="relative z-10 flex h-full items-center px-1">
               <button
                 onClick={() => router.push("/")}
-                className={`flex h-9 w-20 items-center justify-center gap-1 rounded-full text-sm font-medium transition-colors duration-200 ${
+                className={`flex h-9 w-20 cursor-pointer items-center justify-center gap-1 rounded-full text-sm font-medium transition-colors duration-200 ${
                   active === "home" ? "text-neutral-900" : "text-neutral-400"
                 }`}
               >
@@ -36,13 +36,13 @@ const Header: React.FC = () => {
                 <span className={active === "home" ? "opacity-100" : "w-0 overflow-hidden opacity-0"}>Home</span>
               </button>
 
-              <button className={`flex h-9 w-5 items-center justify-center text-neutral-400 transition-all duration-300 ease-in-out ${active === "home" ? "translate-x-4" : "-translate-x-4"}`}>
+              <button className={`flex h-9 w-5 cursor-pointer items-center justify-center text-neutral-400 transition-all duration-300 ease-in-out ${active === "home" ? "translate-x-4" : "-translate-x-4"}`}>
                 <User className="h-4 w-4" strokeWidth={1.5} />
               </button>
 
               <button
                 onClick={() => router.push("/became-client")}
-                className={`flex h-9 w-20 items-center justify-center gap-1 rounded-full text-sm font-medium transition-colors duration-200 ${
+                className={`flex h-9 w-20 cursor-pointer items-center justify-center gap-1 rounded-full text-sm font-medium transition-colors duration-200 ${
                   active === "data" ? "text-neutral-900" : "text-neutral-400"
                 }`}
               >
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
 
           <button
             onClick={() => setIsNavbarOpen(true)}
-            className="relative z-50 ml-1 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 shadow-[0_4px_20px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:scale-105 active:scale-95"
+            className="relative z-50 ml-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-neutral-900 shadow-[0_4px_20px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:scale-105 active:scale-95"
             aria-label="Open menu"
           >
             <Hexagon className="h-5 w-5 text-white" strokeWidth={1.5} />
