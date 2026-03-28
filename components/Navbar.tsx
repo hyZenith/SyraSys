@@ -2,11 +2,15 @@
 
 import React, { useState } from "react";
 import { Hexagon, Home, Layers, User } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import NavbarOpen from "@/components/NavbarOpen";
 
 const Header: React.FC = () => {
-  const [active, setActive] = useState("home");
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const active = pathname === "/became-client" ? "data" : "home";
 
   return (
     <>
@@ -23,7 +27,7 @@ const Header: React.FC = () => {
 
             <div className="relative z-10 flex h-full items-center px-1">
               <button
-                onClick={() => setActive("home")}
+                onClick={() => router.push("/")}
                 className={`flex h-9 w-20 items-center justify-center gap-1 rounded-full text-sm font-medium transition-colors duration-200 ${
                   active === "home" ? "text-neutral-900" : "text-neutral-400"
                 }`}
@@ -37,7 +41,7 @@ const Header: React.FC = () => {
               </button>
 
               <button
-                onClick={() => setActive("data")}
+                onClick={() => router.push("/became-client")}
                 className={`flex h-9 w-20 items-center justify-center gap-1 rounded-full text-sm font-medium transition-colors duration-200 ${
                   active === "data" ? "text-neutral-900" : "text-neutral-400"
                 }`}
