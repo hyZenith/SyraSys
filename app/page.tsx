@@ -4,7 +4,7 @@ import Hero from "@/pages/Hero";
 import LatestCases from "@/pages/latestCases";
 import Portfolio from "@/pages/Portfolio";
 import Pricing from "@/pages/Pricing";
-import Services from "@/pages/Services";
+import Services from "@/pages/Sevices";
 import Testimonials from "@/pages/Testimonials";
 
 export default function Home() {
@@ -12,6 +12,8 @@ export default function Home() {
     <>
       <Hero />
       <Services />
+      {/* <ServicesT /> */}
+      {/* <TutServices /> */}
       <Pricing />
       <AboutUs />
       <Portfolio />
