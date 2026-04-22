@@ -1,65 +1,33 @@
 "use client";
 
 import React, { useState } from "react";
-import { Hexagon, Home, Layers, User } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { Menu } from "lucide-react";
+import { useRouter } from "next/navigation";
 import NavbarOpen from "@/components/NavbarOpen";
 
 const Header: React.FC = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
-
-  const active = pathname === "/became-client" ? "data" : "home";
 
   return (
     <>
       {isNavbarOpen && <NavbarOpen onClose={() => setIsNavbarOpen(false)} />}
 
-      <div className="fixed right-4 top-4 z-50 flex items-center gap-3">
-        <div className="flex items-center gap-2 rounded-full bg-white p-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
-          <div className="relative h-11 w-45 overflow-hidden rounded-full bg-neutral-900">
-            <div
-              className={`absolute top-1 h-9 w-20 rounded-full bg-white transition-all duration-300 ease-in-out ${
-                active === "home" ? "left-1" : "left-24"
-              }`}
-            />
+      <div className="fixed right-6 top-6 z-50 flex items-center gap-3">
+        <button
+          onClick={() => router.push("/contact")}
+          className="flex h-[52px] items-center justify-center rounded-full border border-[#ab7fff]/80 bg-[#1c1c1e]/40 backdrop-blur-md px-8 text-base font-semibold tracking-wide text-white transition-all hover:bg-white/10 active:scale-95"
+        >
+          Get in touch
+        </button>
 
-            <div className="relative z-10 flex h-full items-center px-1">
-              <button
-                onClick={() => router.push("/")}
-                className={`flex h-9 w-20 cursor-pointer items-center justify-center gap-1 rounded-full text-sm font-medium transition-colors duration-200 ${
-                  active === "home" ? "text-neutral-900" : "text-neutral-400"
-                }`}
-              >
-                <Home className="h-4 w-4" strokeWidth={1.5} />
-                <span className={active === "home" ? "opacity-100" : "w-0 overflow-hidden opacity-0"}>Home</span>
-              </button>
-
-              <button className={`flex h-9 w-5 cursor-pointer items-center justify-center text-neutral-400 transition-all duration-300 ease-in-out ${active === "home" ? "translate-x-4" : "-translate-x-4"}`}>
-                <User className="h-4 w-4" strokeWidth={1.5} />
-              </button>
-
-              <button
-                onClick={() => router.push("/became-client")}
-                className={`flex h-9 w-20 cursor-pointer items-center justify-center gap-1 rounded-full text-sm font-medium transition-colors duration-200 ${
-                  active === "data" ? "text-neutral-900" : "text-neutral-400"
-                }`}
-              >
-                <Layers className="h-4 w-4" strokeWidth={1.5} />
-                <span className={active === "data" ? "opacity-100" : "w-0 overflow-hidden opacity-0"}>Client</span>
-              </button>
-            </div>
-          </div>
-
-          <button
-            onClick={() => setIsNavbarOpen(true)}
-            className="relative z-50 ml-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-neutral-900 shadow-[0_4px_20px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:scale-105 active:scale-95"
-            aria-label="Open menu"
-          >
-            <Hexagon className="h-5 w-5 text-white" strokeWidth={1.5} />
-          </button>
-        </div>
+        <button
+          onClick={() => setIsNavbarOpen(true)}
+          className="relative z-50 flex h-[52px] w-[52px] cursor-pointer items-center justify-center rounded-full bg-[#ab7fff] shadow-lg transition-transform duration-300 hover:scale-105 active:scale-95"
+          aria-label="Open menu"
+        >
+          <Menu className="h-[24px] w-[24px] text-white" strokeWidth={2} />
+        </button>
       </div>
     </>
   );
