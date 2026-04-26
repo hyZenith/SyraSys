@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { Mail, MapPin, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, X } from "lucide-react";
 
 type NavbarOpenProps = {
     onClose: () => void;
@@ -11,20 +11,19 @@ type NavbarOpenProps = {
 export default function NavbarOpen({ onClose }: NavbarOpenProps) {
     const overlayRef = useRef<HTMLDivElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
-    const navRef = useRef<(HTMLAnchorElement | null)[]>([]);
+    const navRowsRef = useRef<(HTMLLIElement | null)[]>([]);
     const infoRef = useRef<(HTMLElement | null)[]>([]);
     const footerRef = useRef<HTMLElement>(null);
 
     const navItems = [
-        { label: "Home", href: "#home" },
-        { label: "About", href: "#about" },
-        { label: "Work", href: "#portfolio" },
-        { label: "Expertise", href: "#services" },
-        { label: "Contact", href: "#contact" },
+        { label: "Home", href: "#home", index: "01" },
+        { label: "About Me", href: "#about", index: "02" },
+        { label: "Works", href: "#portfolio", index: "03" },
+        { label: "Insights", href: "#services", index: "04" },
     ];
 
     useEffect(() => {
-        const navLinks = navRef.current.filter(Boolean) as HTMLAnchorElement[];
+        const navRows = navRowsRef.current.filter(Boolean) as HTMLLIElement[];
         const infoBlocks = infoRef.current.filter(Boolean) as HTMLElement[];
 
         const tl = gsap.timeline();
@@ -41,8 +40,8 @@ export default function NavbarOpen({ onClose }: NavbarOpenProps) {
                 "<+0.05"
             )
             .fromTo(
-                navLinks,
-                { y: 28, autoAlpha: 0 },
+                navRows,
+                { y: 30, autoAlpha: 0 },
                 { y: 0, autoAlpha: 1, stagger: 0.06, duration: 0.45, ease: "power3.out" },
                 "<+0.12"
             )
@@ -65,14 +64,14 @@ export default function NavbarOpen({ onClose }: NavbarOpenProps) {
     }, []);
 
     const handleClose = () => {
-        const navLinks = navRef.current.filter(Boolean) as HTMLAnchorElement[];
+        const navRows = navRowsRef.current.filter(Boolean) as HTMLLIElement[];
         const infoBlocks = infoRef.current.filter(Boolean) as HTMLElement[];
 
         const tl = gsap.timeline({
             onComplete: onClose,
         });
 
-        tl.to([footerRef.current, ...infoBlocks, ...navLinks], {
+        tl.to([footerRef.current, ...infoBlocks, ...navRows], {
             y: 10,
             autoAlpha: 0,
             stagger: 0.025,
@@ -101,90 +100,137 @@ export default function NavbarOpen({ onClose }: NavbarOpenProps) {
             );
     };
 
+    useEffect(() => {
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                handleClose();
+            }
+        };
+
+        window.addEventListener("keydown", onKeyDown);
+        return () => window.removeEventListener("keydown", onKeyDown);
+    }, []);
+
     return (
         <div ref={overlayRef} className="fixed inset-0 z-70 bg-black/55 backdrop-blur-md">
             <div className="absolute inset-0" onClick={handleClose} />
 
-            <div ref={panelRef} className="relative mx-3 my-3 min-h-[calc(100dvh-1.5rem)] overflow-hidden rounded-[28px] border border-white/10 bg-[#040505] text-white shadow-[0_35px_90px_rgba(0,0,0,0.55)]">
-                <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.035)_0,rgba(255,255,255,0.035)_1px,transparent_1px,transparent_120px)] opacity-35" />
+            <div
+                ref={panelRef}
+                className="relative mx-3 my-3 min-h-[calc(100dvh-1.5rem)] overflow-hidden rounded-[22px] border border-[#273349]/70 bg-[#020815] text-white shadow-[0_35px_90px_rgba(0,0,0,0.55)]"
+            >
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(24,39,67,0.55),transparent_38%),radial-gradient(circle_at_85%_100%,rgba(24,39,67,0.35),transparent_40%)]" />
 
-                <button
-                    type="button"
-                    onClick={handleClose}
-                    className="absolute right-5 top-5 z-20 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-105"
-                    aria-label="Close menu"
-                >
-                    <X className="h-4 w-4" strokeWidth={2.2} />
-                </button>
+                <div className="relative z-10 flex min-h-[calc(100dvh-1.5rem)] flex-col px-5 py-5 sm:px-7 sm:py-6 md:px-10 md:py-8">
+                    <header className="flex items-center justify-between border-b border-white/10 pb-5">
+                        <p className="text-lg font-semibold tracking-tight text-white/95">showcasy.</p>
+                        <div className="flex items-center gap-3">
+                            <a
+                                href="#contact"
+                                onClick={handleClose}
+                                className="inline-flex h-10 items-center gap-2 rounded-full border border-white/20 px-4 text-sm text-white/90 transition-colors hover:bg-white/10"
+                            >
+                                Let&apos;s Talk
+                                <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
+                            </a>
+                            <button
+                                type="button"
+                                onClick={handleClose}
+                                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/90 transition-colors hover:bg-white/10"
+                                aria-label="Close menu"
+                            >
+                                <X className="h-4 w-4" strokeWidth={2} />
+                            </button>
+                        </div>
+                    </header>
 
-                <div className="relative z-10 grid min-h-[calc(100dvh-1.5rem)] grid-rows-[1fr_auto] px-6 py-8 md:px-10 md:py-10">
-                    <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
-                        <nav className="pl-1 md:pl-4">
-                            <ul className="space-y-1">
+                    <main className="flex-1 py-8 md:py-10">
+                        <nav>
+                            <ul className="space-y-4 md:space-y-5">
                                 {navItems.map((item) => (
-                                    <li key={item.label}>
+                                    <li
+                                        key={item.label}
+                                        ref={(el) => {
+                                            navRowsRef.current[navItems.indexOf(item)] = el;
+                                        }}
+                                        className="group flex items-center justify-between gap-6 md:gap-8"
+                                    >
                                         <a
-                                            ref={(el) => {
-                                                navRef.current[navItems.indexOf(item)] = el;
-                                            }}
                                             href={item.href}
                                             onClick={handleClose}
-                                            className="inline-block text-[2.25rem] font-semibold uppercase leading-[1.08] tracking-[-0.01em] text-white/92 transition-colors hover:text-white sm:text-[2.7rem] md:text-[3.1rem]"
+                                            className="inline-flex items-end gap-2.5 text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.022em] text-white transition-opacity hover:opacity-90 sm:text-[3.6rem] md:text-[4.9rem] lg:text-[5.25rem]"
                                         >
                                             {item.label}
+                                            <span className="mb-2.5 text-[0.9rem] font-medium tracking-[0.08em] text-white/40 md:text-[1rem]">
+                                                ({item.index})
+                                            </span>
+                                        </a>
+
+                                        <a
+                                            href={item.href}
+                                            onClick={handleClose}
+                                            className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/25 text-white/80 transition-all duration-300 group-hover:bg-white group-hover:text-[#020815] md:h-15 md:w-15"
+                                            aria-label={`Go to ${item.label}`}
+                                        >
+                                            <ArrowRight className="h-5 w-5" strokeWidth={2} />
                                         </a>
                                     </li>
                                 ))}
                             </ul>
                         </nav>
+                    </main>
 
-                        <div className="md:justify-self-end md:pr-10">
-                            <div className="space-y-8 text-white/75">
-                                <section
-                                    ref={(el) => {
-                                        infoRef.current[0] = el;
-                                    }}
-                                    className="flex items-start gap-4"
-                                >
-                                    <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/90">
-                                        <Mail className="h-4 w-4" strokeWidth={1.8} />
-                                    </span>
-                                    <div>
-                                        <p className="text-lg font-medium text-white">Quick contact</p>
-                                        <p className="mt-1 text-sm text-white/60">Phone: +1 234 567 8910</p>
-                                        <p className="text-sm text-white/60">Email: info@syrasys.com</p>
-                                    </div>
-                                </section>
-
-                                <section
-                                    ref={(el) => {
-                                        infoRef.current[1] = el;
-                                    }}
-                                    className="flex items-start gap-4"
-                                >
-                                    <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/90">
-                                        <MapPin className="h-4 w-4" strokeWidth={1.8} />
-                                    </span>
-                                    <div>
-                                        <p className="text-lg font-medium text-white">Contact address</p>
-                                        <p className="mt-1 text-sm text-white/60">Chiring Sapori,</p>
-                                        <p className="text-sm text-white/60">Dibrugarh, 786002</p>
-                                    </div>
-                                </section>
+                    <footer
+                        ref={footerRef}
+                        className="grid gap-8 border-t border-white/10 pt-6 pb-2 text-white/75 md:grid-cols-2 md:items-end md:gap-10"
+                    >
+                        <section
+                            ref={(el) => {
+                                infoRef.current[0] = el;
+                            }}
+                        >
+                            <p className="mb-4 text-[1.05rem] font-medium text-white/70">Follow me.</p>
+                            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-xs font-medium uppercase tracking-[0.08em] text-white/80">
+                                <a href="#" className="inline-flex items-center gap-1.5 hover:text-white">
+                                    Instagram
+                                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                                </a>
+                                <a href="#" className="inline-flex items-center gap-1.5 hover:text-white">
+                                    Behance
+                                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                                </a>
+                                <a href="#" className="inline-flex items-center gap-1.5 hover:text-white">
+                                    Twitter
+                                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                                </a>
+                                <a href="#" className="inline-flex items-center gap-1.5 hover:text-white">
+                                    Dribbble
+                                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                                </a>
                             </div>
-                        </div>
-                    </div>
+                        </section>
 
-                    <footer ref={footerRef} className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-5 text-white/80 md:flex-row md:items-center md:justify-between">
-                        <div className="flex items-center gap-5 text-sm">
-                            <a href="#" className="hover:text-white">Fb.</a>
-                            <a href="#" className="hover:text-white">Ig.</a>
-                            <a href="#" className="hover:text-white">Tw.</a>
-                            <a href="#" className="hover:text-white">Be.</a>
-                        </div>
-                        <p className="text-sm">
-                            Let&apos;s make something great <span className="font-semibold text-white">work together?</span>
-                        </p>
+                        <section
+                            ref={(el) => {
+                                infoRef.current[1] = el;
+                            }}
+                            className="md:justify-self-end md:text-right"
+                        >
+                            <p className="mb-4 text-[1.05rem] font-medium text-white/70">Stay connected w/ me.</p>
+                            <form
+                                onSubmit={(event) => event.preventDefault()}
+                                className="group flex items-center border-b border-white/30 pb-2 md:min-w-68"
+                            >
+                                <input
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    className="w-full bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none"
+                                />
+                                <button type="submit" className="text-white/80 transition-transform group-hover:translate-x-0.5">
+                                    <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
+                                </button>
+                            </form>
+                        </section>
                     </footer>
                 </div>
             </div>

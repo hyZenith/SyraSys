@@ -17,7 +17,7 @@ const Sidebar: React.FC = () => {
           key={label}
           href={href}
           aria-label={label}
-          className="sidebar-icon group relative w-12 h-12 rounded-2xl bg-white/80 backdrop-blur-sm
+          className="sidebar-icon group relative w-12 h-12 rounded-2xl bg-black/10 backdrop-blur-sm
                      flex items-center justify-center text-neutral-500
                      shadow-[0_2px_12px_rgba(0,0,0,0.06)] cursor-pointer"
         >
