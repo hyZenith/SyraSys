@@ -1,101 +1,122 @@
-import { ArrowUpRight } from 'lucide-react';
+"use client";
 
-export default function Portfolio() {
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const imagesColumn1 = [
+  "/assets/portfolio/screen1-1.webp",
+  "/assets/portfolio/screen2-1.webp",
+  "/assets/portfolio/screen3-1.webp",
+];
+
+const imagesColumn2 = [
+  "/assets/portfolio/screen1-2.webp",
+  "/assets/portfolio/screen2-2.webp",
+  "/assets/portfolio/screen3-2 (1).webp",
+];
+
+const imagesColumn3 = [
+  "/assets/portfolio/screen1-3.webp",
+  "/assets/portfolio/screen2-3.webp",
+  "/assets/portfolio/screen3-3.webp",
+];
+
+const imagesColumn4 = [
+  "/assets/portfolio/screen1-4.webp",
+  "/assets/portfolio/screen2-4.webp",
+  "/assets/portfolio/screen3-4.webp",
+];
+
+export default function Services() {
+  const containerRef = useRef<HTMLElement>(null);
+  const col1Ref = useRef<HTMLDivElement>(null);
+  const col2Ref = useRef<HTMLDivElement>(null);
+  const col3Ref = useRef<HTMLDivElement>(null);
+  const col4Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    // Initialize Lenis for smooth scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
-    <section className="bg-[#fafafa] px-4 md:px-12 py-24 lg:py-32 font-sans overflow-hidden">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between mb-12 md:mb-20 gap-12 text-gray-900">
-          
-          <div className="w-full md:w-1/3 flex flex-col justify-start pt-3">
-            <p className="text-gray-400 text-sm font-semibold tracking-wide uppercase">03 — Our Portfolio</p>
-            <p className="text-[#a0a0a0] text-xl font-medium mt-12 md:mt-24 w-11/12 leading-snug">
-              Our user-centered design encourages productivity and boosts revenue.
-            </p>
-          </div>
-          
-          <div className="w-full md:w-[60%] flex flex-col items-start md:items-start justify-start">
-            <h2 className="text-[3.25rem] md:text-[4.5rem] lg:text-[5.5rem] font-medium tracking-tight text-[#1a1a1a] leading-[1.05] -ml-1">
-              We don't do cookie-<br className="hidden md:block" />cutter solutions
-            </h2>
-            <div className="mt-12 md:mt-16">
-              <a href="#" className="inline-block text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors">
-                Schedule Meeting
-              </a>
-            </div>
-          </div>
-          
-        </div>
+    <section ref={containerRef} className="relative w-full bg-[#050505]">
+      {/* Sticky Hand Container */}
+      <div className="sticky top-20 left-0 w-full h-screen z-20 flex items-center justify-center pointer-events-none overflow-hidden  ">
+        <img
+          src="/assets/portfolio/hand.webp"
+          alt="Hand holding phone"
+          className="h-[80vh] md:h-[115vh] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.9)] mt-[350px]"
+        />
+      </div>
 
-        <div className="flex flex-col md:flex-row gap-6 lg:gap-8 mt-12 md:mt-20">
-          
-          {/* Left Column */}
-          <div className="w-full md:w-[57%] flex flex-col gap-6 lg:gap-8">
-            
-            <div className="relative group rounded-[2rem] overflow-hidden bg-gray-100 aspect-[4/3] lg:aspect-[1.3/1] w-full transform-gpu ring-1 ring-black/5 shadow-sm">
-              <img 
-                src="/assets/saas.png" 
-                alt="SaaS Website Design" 
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105" 
-              />
-              <div className="absolute left-4 md:left-5 right-4 md:right-5 bg-white rounded-full p-[6px] pl-5 md:pl-6 flex justify-between items-center bottom-4 md:bottom-5 shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
-                <span className="font-bold text-[#1f2937] text-sm md:text-[15px] tracking-wide">SaaS - Website Design</span>
-                <button className="w-10 h-10 md:w-11 md:h-11 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-black group-hover:text-white transition-all duration-300 transform-gpu group-hover:scale-105">
-                  <ArrowUpRight size={20} strokeWidth={2.5} />
-                </button>
+      {/* Scrolling Background */}
+      <div className="relative z-10 w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 -mt-[100vh] pb-[12vh] pt-[15vh]">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-4">
+
+          {/* Left Side: 2 Columns */}
+          <div ref={col1Ref} className="col-span-1 flex flex-col gap-2 lg:gap-4">
+            {imagesColumn1.map((src, i) => (
+              <div key={`col1-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[650/1374] bg-[#111]">
+                <img src={src} className="w-full h-full object-cover" alt="Portfolio screen" />
               </div>
-            </div>
-
-            <div className="relative group rounded-[2rem] overflow-hidden bg-gray-100 aspect-square lg:aspect-[1/0.9] w-full transform-gpu ring-1 ring-black/5 shadow-sm">
-              <img 
-                src="/assets/lattice.png" 
-                alt="HR Management Landing Page" 
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105" 
-              />
-              <div className="absolute left-4 md:left-5 right-4 md:right-5 bg-white rounded-full p-[6px] pl-5 md:pl-6 flex justify-between items-center bottom-4 md:bottom-5 shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
-                <span className="font-bold text-[#1f2937] text-sm md:text-[15px] tracking-wide">Lattice - HR Management Landing Page</span>
-                <button className="w-10 h-10 md:w-11 md:h-11 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-black group-hover:text-white transition-all duration-300 transform-gpu group-hover:scale-105">
-                  <ArrowUpRight size={20} strokeWidth={2.5} />
-                </button>
-              </div>
-            </div>
-
+            ))}
           </div>
 
-          {/* Right Column */}
-          <div className="w-full md:w-[43%] flex flex-col gap-6 lg:gap-8">
-            
-            <div className="relative group rounded-[2rem] overflow-hidden bg-gray-100 aspect-[3/4] lg:aspect-[0.85/1] w-full transform-gpu ring-1 ring-black/5 shadow-sm">
-              <img 
-                src="/assets/mobile.png" 
-                alt="Mobile AI App" 
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105" 
-              />
-              <div className="absolute left-4 md:left-5 right-4 md:right-5 bg-white rounded-full p-[6px] pl-5 md:pl-6 flex justify-between items-center bottom-4 md:bottom-5 shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
-                <span className="font-bold text-[#1f2937] text-sm md:text-[15px] tracking-wide">Mobile AI App</span>
-                <button className="w-10 h-10 md:w-11 md:h-11 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-black group-hover:text-white transition-all duration-300 transform-gpu group-hover:scale-105">
-                  <ArrowUpRight size={20} strokeWidth={2.5} />
-                </button>
+          <div ref={col2Ref} className="col-span-1 flex flex-col gap-2 lg:gap-4">
+            {imagesColumn2.map((src, i) => (
+              <div key={`col2-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[650/1374] bg-[#111]">
+                <img src={src} className="w-full h-full object-cover" alt="Portfolio screen" />
               </div>
-            </div>
-
-            <div className="relative group rounded-[2rem] overflow-hidden bg-gray-100 aspect-[4/3] w-full transform-gpu ring-1 ring-black/5 shadow-sm">
-              <img 
-                src="/assets/ai_platform.png" 
-                alt="AI Platform's Onboarding" 
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105" 
-              />
-              <div className="absolute left-4 md:left-5 right-4 md:right-5 bg-white rounded-full p-[6px] pl-5 md:pl-6 flex justify-between items-center bottom-4 md:bottom-5 shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
-                <span className="font-bold text-[#1f2937] text-sm md:text-[15px] tracking-wide">AI Platform's Onboarding</span>
-                <button className="w-10 h-10 md:w-11 md:h-11 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-black group-hover:text-white transition-all duration-300 transform-gpu group-hover:scale-105">
-                  <ArrowUpRight size={20} strokeWidth={2.5} />
-                </button>
-              </div>
-            </div>
-
+            ))}
           </div>
 
+          {/* Center Empty Space for Hand */}
+          <div className="hidden lg:block col-span-1 pointer-events-none" />
+
+          {/* Right Side: 2 Columns */}
+          <div ref={col3Ref} className="col-span-1 flex flex-col gap-2 lg:gap-4">
+            {imagesColumn3.map((src, i) => (
+              <div key={`col3-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[650/1374] bg-[#111]">
+                <img src={src} className="w-full h-full object-cover" alt="Portfolio screen" />
+              </div>
+            ))}
+          </div>
+
+          <div ref={col4Ref} className="col-span-1 flex flex-col gap-2 lg:gap-4">
+            {imagesColumn4.map((src, i) => (
+              <div key={`col4-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[650/1374] bg-[#111]">
+                <img src={src} className="w-full h-full object-cover" alt="Portfolio screen" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Gradient overlays for seamless transition at section bounds */}
+      <div className="absolute top-0 left-0 w-full h-[20vh] bg-gradient-to-b from-[#050505] to-transparent z-15 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-[20vh] bg-gradient-to-t from-[#050505] to-transparent z-15 pointer-events-none" />
     </section>
   );
 }
