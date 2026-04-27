@@ -70,6 +70,3 @@ html {
   50% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
 }
 
-.pulse-orange {
-  animation: pulse-orange 2s ease-in-out infinite;
-}
