@@ -128,7 +128,7 @@ export default function ButtonV2({ href, label, className = "" }: ButtonV2Props)
 			href={href}
 			className={`group relative inline-flex h-14 items-center overflow-hidden rounded-xl border border-[#202634] bg-[#141a26] pl-20 pr-5 shadow-[0_14px_28px_rgba(10,12,20,0.22)] transition-transform duration-300 hover:-translate-y-0.5 ${className}`}
 		>
-			<span ref={ctaFillRef} className="pointer-events-none absolute inset-y-1 left-1 overflow-hidden rounded-lg bg-[#d7ff5f]">
+			<span ref={ctaFillRef} className="pointer-events-none absolute inset-y-1 left-1 z-20 overflow-hidden rounded-lg bg-[#d7ff5f]">
 				<span ref={ctaTrackRef} className="absolute left-5 top-1/2 flex -translate-y-1/2 items-center gap-5 text-[#161616]">
 					{Array.from({ length: 6 }).map((_, index) => (
 						<svg
