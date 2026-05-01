@@ -62,6 +62,15 @@ export default function Services() {
 
   return (
     <section ref={containerRef} className="relative w-full bg-[#050505]">
+
+      <div className="bento-layout-projects">
+        <div className="projects">
+          
+        </div>
+      </div>
+
+
+
       {/* Sticky Hand Container */}
       <div className="sticky top-20 left-0 w-full h-screen z-20 flex items-center justify-center pointer-events-none overflow-hidden  ">
         <img

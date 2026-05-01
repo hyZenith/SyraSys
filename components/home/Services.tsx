@@ -88,7 +88,7 @@ export default function StickyCards() {
       (card): card is HTMLDivElement => card !== null
     );
     const totalCards = cards.length;
-    const segmentSize = 1 / totalCards;
+    const segmentSize = 1 / Math.max(1, totalCards - 1);
 
     const cardYOffset = 5;
     const cardScaleStep = 0.075;
@@ -104,7 +104,7 @@ export default function StickyCards() {
     const trigger = ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top top",
-      end: `+=${window.innerHeight * 8}px`,
+      end: `+=${window.innerHeight * totalCards}px`,
       pin: true,
       scrub: 1,
       onUpdate: (self) => {
