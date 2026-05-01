@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import "./icon-fonts.css";
 /* ── Smooth scroll ── */
 html {
   scroll-behavior: smooth;
