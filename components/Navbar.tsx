@@ -2,12 +2,15 @@
 
 import React, { useState } from "react";
 import { Menu } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import NavbarOpen from "@/components/NavbarOpen";
 
 const Header: React.FC = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+
+  if (pathname === "/about-us") return null;
 
   return (
     <>
