@@ -22,12 +22,34 @@ const thunder = localFont({
 
 //use the logo's instead of text
 const partners = [
-  "TechCorp",
-  "NovaPay",
-  "CloudBase",
-  "FinEdge",
-  "DataLoop",
-  "ScaleAI",
+  "Sehsaa",
+  "GrowthYaari",
+  "LebasneseGrill",
+  "FEAR.",
+  "Yannar",
+  "Crowd Impact",
+  "Priti's Premix",
+  "AYOMI",
+  "Aaina The Careers ",
+  "Rotaract",
+  "Stitzzy",
+  "Awarapan",
+  "Raheja Universal",
+  "Ayunature",
+  "Namma Spot",
+  "Veg buggy",
+  "Drave Digitals",
+  "velor",
+  "food galery",
+  "microVitiligo.com",
+  "mahdusara",
+  "THB",
+  "XposeTattoo",
+  "ORGKhana",
+  "aforro",
+  "Arise",
+  "aritri",
+  "Espresso GO"
 ];
 
 const Hero = () => {
