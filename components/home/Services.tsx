@@ -15,60 +15,35 @@ export default function StickyCards() {
   const cardsData = [
     {
       id: "01",
-      title: "Solid Designing Solutions for Startups & Scaleups.",
-      desc: "We clarify your positioning, define a distinctive tone of voice, and build a visual system that works across acquisition and product...",
+      title: "Branding that drives conversion & funding.",
+      desc: "We clarify your positioning, define a distinctive tone of voice, and build a visual system that works across acquisition and product.",
       color: "hsl(247, 56%, 42%)",
       quote: "Working with Brand Appart has been an absolute pleasure...",
-      author: {
-        name: "Jérémy Bendayan",
-        title: "Co-founder & COO @Jaws Group",
-        img: "https://cdn.prod.website-files.com/67f7891166d9b83b9231109e/68403ea61d62eda6b245af20_1738708560978.avif",
-      },
-      images: [
-        "https://cdn.prod.website-files.com/67f7891166d9b83b9231109e/68e622e1f900620069168863_branding-01.avif",
-        
-      ],
+      icons: [1, 2, 3],
     },
     {
       id: "02",
       title: "Branding & Product Design that drives growth.",
-      desc: "We start from business goals, map the critical journeys...",
+      desc: "We start from business goals, map the critical journeys, and design systems your team can scale with confidence.",
       color: "#ff7722",
       quote: "A huge thank you to the entire Brand Appart team...",
-      author: {
-        name: "Théo Cesarini",
-        title: "CEO & Co-Founder @Incard & @Fundree",
-        img: "https://cdn.prod.website-files.com/67f7891166d9b83b9231109e/683df0223365b8119da39098_1722618592452.avif",
-      },
-      images: [
-        "https://cdn.prod.website-files.com/67f7891166d9b83b9231109e/68e633760e1dd0f55c0e7c0a_product-01.avif",
-      ],
+      icons: [10, 11, 12],
     },
     {
       id: "03",
       title: "Web Design & Development for growing teams & business.",
-      desc: "We align messaging, page architecture, and UI...",
+      desc: "We align messaging, page architecture, and UI so every page supports pipeline and sales conversations.",
       color: "#ff3c34",
       quote: "I’ve worked with Brand Appart on multiple projects...",
-      author: {
-        name: "Alexis Botaya",
-        title: "Managing director @Sound Experience",
-        img: "https://cdn.prod.website-files.com/67f7891166d9b83b9231109e/683df55bfbee02637c53da16_1664138677695.avif",
-      },
-      images: [
-        "https://cdn.prod.website-files.com/67f7891166d9b83b9231109e/68e63541167dd0ff79e0f7c6_webdesign-01.avif",
-      ],
+      icons: [20, 21, 22],
     },
     {
       id: "04",
       title: "Custom CRM & Sales Tools to boost your sales team.",
-      desc: "We craft the narrative that gets meetings...",
+      desc: "We craft workflows and internal tools that reduce manual steps and help your team close faster.",
       color: "#785f47",
       quote: null,
-      author: null,
-      images: [
-        "https://cdn.prod.website-files.com/67f7891166d9b83b9231109e/68e635aa0286520b44dea001_pitch-01.avif",
-      ],
+      icons: [30, 31, 32],
     },
   ];
 
@@ -156,48 +131,82 @@ export default function StickyCards() {
           ref={(el) => {
             cardsRef.current[index] = el;
           }}
-          className="absolute top-1/2 left-1/2 w-[70%] h-[70%] flex gap-6 p-8 rounded-2xl text-white"
+          className="absolute top-1/2 left-1/2 h-[70%] w-[70%] overflow-hidden rounded-[28px] p-10 text-white shadow-[0_40px_90px_rgba(0,0,0,0.22)]"
           style={{
             backgroundColor: card.color,
             zIndex: cardsData.length - index,
           }}
         >
-          {/* LEFT */}
-          <div className="flex-1 flex flex-col justify-between">
-            <div>
-              <p className="text-xs opacity-70">{card.id}</p>
-              <h1 className="text-[50px] font-bold mt-2">{card.title}</h1>
-              <p className="text-sm mt-4 opacity-90">{card.desc}</p>
-            </div>
+          <p className="absolute right-10 top-8 text-3xl font-medium opacity-45">
+            ({card.id})
+          </p>
 
-            {card.author && (
-              <div className="mt-4">
-                <p className="text-xs italic opacity-80">
-                  “{card.quote}”
+          <div className="grid h-full grid-cols-[1.1fr_1fr] gap-8">
+            {/* LEFT */}
+            <div className="flex flex-col justify-between">
+              <div>
+                <div className="flex items-start ">
+                  <h1 className="max-w-[18ch] text-[58px] font-bold leading-[0.95] tracking-tight">
+                    {card.title}
+                  </h1>
+                </div>
+                <p className="mt-8 max-w-[26ch] text-3xl leading-tight opacity-70">
+                  {card.desc}
                 </p>
-                <div className="flex items-center gap-2 mt-2">
+              </div>
+
+              <div className="mb-10 flex items-center flex-col gap-5 sm:flex-row sm:justify-center sm:gap-x-4 md:justify-start">
+                <div className="flex -space-x-3.5" role="group" aria-label="Trusted by customers">
                   <img
-                    src={card.author.img}
-                    className="w-8 h-8 rounded-full"
+                    className="inline-block h-12 w-12 rounded-full border-2 border-white bg-[#f6d96c] object-cover"
+                    src="/assets/ns-avatar-1.png"
+                    alt="User avatar 1"
                   />
-                  <div className="text-xs">
-                    <p>{card.author.name}</p>
-                    <p className="opacity-70">{card.author.title}</p>
+                  <img
+                    className="inline-block h-12 w-12 rounded-full border-2 border-white bg-[#f66d6d] object-cover"
+                    src="/assets/ns-avatar-2.png"
+                    alt="User avatar 2"
+                  />
+                  <img
+                    className="inline-block h-12 w-12 rounded-full border-2 border-white bg-[#79c77f] object-cover"
+                    src="/assets/ns-avatar-3.png"
+                    alt="User avatar 3"
+                  />
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-white bg-[#9DAEC6] text-sm font-medium text-white">
+                    17+
                   </div>
                 </div>
+                <div className="text-center sm:text-left">
+                  <p className="block text-sm font-medium text-white/90">
+                    Trusted by 20+
+                  </p>
+                  <p className="text-sm text-white/60">
+                    Customers across the globe
+                  </p>
+                </div>
               </div>
-            )}
-          </div>
+            </div>
 
-          {/* RIGHT */}
-          <div className="flex items-center pr-14">
-            {card.images.slice(0, 4).map((img, i) => (
-              <img
-                key={i}
-                src={img}
-                className="w-[400px] h-[400px]  rounded-md"
-              />
-            ))}
+            {/* RIGHT */}
+            <div className="flex h-full flex-col justify-end">
+              {card.icons?.length ? (
+                <div className="mt-auto flex flex-wrap justify-end gap-4">
+                  {card.icons.slice(0, 3).map((icon, i) => (
+                    <div
+                      key={`${card.id}-icon-${i}`}
+                      className="h-40 w-40 overflow-hidden rounded-2xl bg-white/10"
+                    >
+                      <div className="flex h-full w-full items-center justify-center">
+                        <i
+                          className={`ns-shape-${icon} text-[96px] leading-none text-white`}
+                          aria-hidden
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       ))}
