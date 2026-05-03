@@ -62,15 +62,6 @@ export default function Services() {
 
   return (
     <section ref={containerRef} className="relative w-full bg-[#050505]">
-
-      <div className="bento-layout-projects">
-        <div className="projects">
-          
-        </div>
-      </div>
-
-
-
       {/* Sticky Hand Container */}
       <div className="sticky top-20 left-0 w-full h-screen z-20 flex items-center justify-center pointer-events-none overflow-hidden  ">
         <img
@@ -78,6 +69,27 @@ export default function Services() {
           alt="Hand holding phone"
           className="h-[80vh] md:h-[115vh] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.9)] mt-[350px]"
         />
+        <div >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute object-cover rounded-[30px]"
+            style={{
+              width: "309px",
+              height: "655px",
+              top: "52%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 1,
+            }}
+          >
+            <source src="/assets/portfolio/phone.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+        </div>
       </div>
 
       {/* Scrolling Background */}
@@ -87,7 +99,7 @@ export default function Services() {
           {/* Left Side: 2 Columns */}
           <div ref={col1Ref} className="col-span-1 flex flex-col gap-2 lg:gap-4">
             {imagesColumn1.map((src, i) => (
-              <div key={`col1-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[650/1374] bg-[#111]">
+              <div key={`col1-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-650/1374 bg-[#111]">
                 <img src={src} className="w-full h-full object-cover" alt="Portfolio screen" />
               </div>
             ))}
@@ -95,7 +107,7 @@ export default function Services() {
 
           <div ref={col2Ref} className="col-span-1 flex flex-col gap-2 lg:gap-4">
             {imagesColumn2.map((src, i) => (
-              <div key={`col2-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[650/1374] bg-[#111]">
+              <div key={`col2-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-650/1374 bg-[#111]">
                 <img src={src} className="w-full h-full object-cover" alt="Portfolio screen" />
               </div>
             ))}
@@ -107,7 +119,7 @@ export default function Services() {
           {/* Right Side: 2 Columns */}
           <div ref={col3Ref} className="col-span-1 flex flex-col gap-2 lg:gap-4">
             {imagesColumn3.map((src, i) => (
-              <div key={`col3-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[650/1374] bg-[#111]">
+              <div key={`col3-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-650/1374 bg-[#111]">
                 <img src={src} className="w-full h-full object-cover" alt="Portfolio screen" />
               </div>
             ))}
@@ -115,7 +127,7 @@ export default function Services() {
 
           <div ref={col4Ref} className="col-span-1 flex flex-col gap-2 lg:gap-4">
             {imagesColumn4.map((src, i) => (
-              <div key={`col4-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-[650/1374] bg-[#111]">
+              <div key={`col4-${i}`} className="overflow-hidden rounded-[2.5rem] shadow-2xl aspect-650/1374 bg-[#111]">
                 <img src={src} className="w-full h-full object-cover" alt="Portfolio screen" />
               </div>
             ))}
@@ -124,8 +136,8 @@ export default function Services() {
       </div>
 
       {/* Gradient overlays for seamless transition at section bounds */}
-      <div className="absolute top-0 left-0 w-full h-[20vh] bg-gradient-to-b from-[#050505] to-transparent z-15 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-full h-[20vh] bg-gradient-to-t from-[#050505] to-transparent z-15 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-[20vh] bg-linear-to-b from-[#050505] to-transparent z-15 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-[20vh] bg-linear-to-t from-[#050505] to-transparent z-15 pointer-events-none" />
     </section>
   );
 }
