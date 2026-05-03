@@ -1,7 +1,8 @@
-import "./globals.css";
 import Sidebar from "../components/Sidebar";
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
+import "./globals.css";
+import "./icon-fonts.css";
 
 export default function RootLayout({
   children,
