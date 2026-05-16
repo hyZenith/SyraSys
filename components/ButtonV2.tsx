@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
 type ButtonV2Props = {
@@ -14,8 +14,10 @@ export default function ButtonV2({ href, label, className = "" }: ButtonV2Props)
 	const ctaFillRef = useRef<HTMLSpanElement | null>(null);
 	const ctaTrackRef = useRef<HTMLSpanElement | null>(null);
 	const ctaLabelRef = useRef<HTMLSpanElement | null>(null);
+	const iconLoopTweenRef = useRef<gsap.core.Timeline | null>(null);
+	const isHoveredRef = useRef(false);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const cta = ctaRef.current;
 		const fill = ctaFillRef.current;
 		const track = ctaTrackRef.current;
@@ -27,7 +29,6 @@ export default function ButtonV2({ href, label, className = "" }: ButtonV2Props)
 
 		const iconNodes = Array.from(track.querySelectorAll("svg"));
 		const collapsedWidth = 64;
-		let iconLoopTween: gsap.core.Timeline | null = null;
 
 		const ctx = gsap.context(() => {
 			gsap.set(fill, { width: collapsedWidth });
@@ -35,89 +36,113 @@ export default function ButtonV2({ href, label, className = "" }: ButtonV2Props)
 				opacity: (index) => (index === 0 ? 1 : 0),
 				color: "#000000",
 			});
-			gsap.set(labelEl, { color: "#ffffff", autoAlpha: 1 });
+			gsap.set(labelEl, { color: "#ffffff" });
+			gsap.set(cta, { y: 0 });
 		}, cta);
 
-		const onEnter = () => {
-			gsap.to(fill, {
-				width: Math.max(cta.clientWidth - 8, collapsedWidth),
-				duration: 0.42,
-				ease: "power3.out",
+		const buildIconLoop = () => {
+			const tl = gsap.timeline({ repeat: -1 });
+			iconNodes.forEach((icon, index) => {
+				const startAt = index * 0.1;
+				tl.to(
+					icon,
+					{
+						color: "#ffffff",
+						duration: 0.17,
+						ease: "none",
+					},
+					startAt
+				).to(
+					icon,
+					{
+						color: "#000000",
+						duration: 0.34,
+						ease: "none",
+					},
+					startAt + 0.17
+				);
+			});
+			return tl;
+		};
+
+		const animateIn = () => {
+			if (isHoveredRef.current) return;
+			isHoveredRef.current = true;
+
+			gsap.to(cta, {
+				y: -2,
+				duration: 0.3,
+				ease: "power2.out",
+				overwrite: "auto",
 			});
 
-			gsap.to(labelEl, {
-				autoAlpha: 0,
-				duration: 0.2,
-				ease: "power2.out",
+			gsap.to(fill, {
+				width: Math.max(cta.clientWidth - 8, collapsedWidth),
+				duration: 0.6,
+				ease: "power3.out",
+				overwrite: "auto",
 			});
 
 			gsap.to(iconNodes, {
 				opacity: 1,
-				color: "#000000",
-				duration: 0.18,
+				duration: 0.26,
 				ease: "none",
-			});
-
-			iconLoopTween?.kill();
-			iconLoopTween = gsap.timeline({ repeat: -1 });
-
-			iconNodes.forEach((icon, index) => {
-				const startAt = index * 0.1;
-				iconLoopTween!
-					.to(
-						icon,
-						{
-							color: "#ffffff",
-							duration: 0.12,
-							ease: "none",
-						},
-						startAt
-					)
-					.to(
-						icon,
-						{
-							color: "#000000",
-							duration: 0.24,
-							ease: "none",
-						},
-						startAt + 0.12
-					);
+				overwrite: "auto",
+				onComplete: () => {
+					if (isHoveredRef.current && !iconLoopTweenRef.current) {
+						iconLoopTweenRef.current = buildIconLoop();
+					}
+				},
 			});
 		};
 
-		const onLeave = () => {
-			iconLoopTween?.kill();
-			iconLoopTween = null;
+		const animateOut = () => {
+			if (!isHoveredRef.current) return;
+			isHoveredRef.current = false;
+
+			iconLoopTweenRef.current?.kill();
+			iconLoopTweenRef.current = null;
+
+			gsap.to(cta, {
+				y: 0,
+				duration: 0.4,
+				ease: "power2.out",
+				overwrite: "auto",
+			});
 
 			gsap.to(fill, {
 				width: collapsedWidth,
-				duration: 0.36,
+				duration: 0.52,
 				ease: "power3.inOut",
+				overwrite: "auto",
 			});
 
 			gsap.to(iconNodes, {
 				opacity: (index) => (index === 0 ? 1 : 0),
 				color: "#000000",
-				duration: 0.22,
-				stagger: 0.03,
+				duration: 0.31,
 				ease: "none",
-			});
-
-			gsap.to(labelEl, {
-				autoAlpha: 1,
-				color: "#ffffff",
-				duration: 0.24,
-				ease: "power2.out",
+				overwrite: "auto",
 			});
 		};
 
-		cta.addEventListener("mouseenter", onEnter);
-		cta.addEventListener("mouseleave", onLeave);
+		const onPointerEnter = (e: PointerEvent) => {
+			if (e.pointerType === "touch") return;
+			animateIn();
+		};
+
+		const onPointerLeave = (e: PointerEvent) => {
+			if (e.pointerType === "touch") return;
+			animateOut();
+		};
+
+		cta.addEventListener("pointerenter", onPointerEnter);
+		cta.addEventListener("pointerleave", onPointerLeave);
 
 		return () => {
-			iconLoopTween?.kill();
-			cta.removeEventListener("mouseenter", onEnter);
-			cta.removeEventListener("mouseleave", onLeave);
+			iconLoopTweenRef.current?.kill();
+			cta.removeEventListener("pointerenter", onPointerEnter);
+			cta.removeEventListener("pointerleave", onPointerLeave);
 			ctx.revert();
 		};
 	}, []);
@@ -126,10 +151,25 @@ export default function ButtonV2({ href, label, className = "" }: ButtonV2Props)
 		<a
 			ref={ctaRef}
 			href={href}
-			className={`group relative inline-flex h-14 items-center overflow-hidden rounded-xl border border-[#202634] bg-[#141a26] pl-20 pr-5 shadow-[0_14px_28px_rgba(10,12,20,0.22)] transition-transform duration-300 hover:-translate-y-0.5 ${className}`}
+			className={`group relative inline-flex h-14 items-center overflow-hidden rounded-xl border border-[#202634] bg-[#141a26] pl-20 pr-5 shadow-[0_14px_28px_rgba(10,12,20,0.22)] ${className}`}
 		>
-			<span ref={ctaFillRef} className="pointer-events-none absolute inset-y-1 left-1 z-20 overflow-hidden rounded-lg bg-[#d7ff5f]">
-				<span ref={ctaTrackRef} className="absolute left-5 top-1/2 flex -translate-y-1/2 items-center gap-5 text-[#161616]">
+			{/* Label is BEHIND (z-0) — always visible, gets covered by green fill on hover */}
+			<span
+				ref={ctaLabelRef}
+				className="pointer-events-none relative z-0 text-base font-semibold tracking-tight text-white md:text-xl"
+			>
+				{label}
+			</span>
+
+			{/* Green fill is ON TOP (z-10) — slides in to cover label, slides out to reveal it */}
+			<span
+				ref={ctaFillRef}
+				className="pointer-events-none absolute inset-y-1 left-1 z-10 overflow-hidden rounded-lg bg-[#d7ff5f]"
+			>
+				<span
+					ref={ctaTrackRef}
+					className="pointer-events-none absolute left-5 top-1/2 flex -translate-y-1/2 items-center gap-5 text-[#161616]"
+				>
 					{Array.from({ length: 6 }).map((_, index) => (
 						<svg
 							key={index}
@@ -151,10 +191,6 @@ export default function ButtonV2({ href, label, className = "" }: ButtonV2Props)
 						</svg>
 					))}
 				</span>
-			</span>
-
-			<span ref={ctaLabelRef} className="relative z-10 text-base font-semibold tracking-tight text-white md:text-xl">
-				{label}
 			</span>
 		</a>
 	);
