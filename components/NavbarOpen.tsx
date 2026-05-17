@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ArrowRight, ArrowUpRight, X } from "lucide-react";
+import { FaBehance, FaDribbble, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 type NavbarOpenProps = {
     onClose: () => void;
@@ -115,33 +117,26 @@ export default function NavbarOpen({ onClose }: NavbarOpenProps) {
         <div ref={overlayRef} className="fixed inset-0 z-70 bg-black/55 backdrop-blur-md">
             <div className="absolute inset-0" onClick={handleClose} />
 
+            <div className="fixed right-6 top-6 z-[80] flex items-center gap-3">
+                <button
+                    type="button"
+                    onClick={handleClose}
+                    className="relative z-50 flex h-[52px] w-[52px] cursor-pointer items-center justify-center rounded-full bg-[#ab7fff] shadow-lg transition-transform duration-300 hover:scale-105 active:scale-95"
+                    aria-label="Close menu"
+                >
+                    <X className="h-[24px] w-[24px] text-white" strokeWidth={2} />
+                </button>
+            </div>
+
             <div
                 ref={panelRef}
-                className="relative mx-3 my-3 min-h-[calc(100dvh-1.5rem)] overflow-hidden rounded-[22px] border border-[#273349]/70 bg-[#020815] text-white shadow-[0_35px_90px_rgba(0,0,0,0.55)]"
+                className="relative overflow-hidden border border-[#273349]/70 bg-[#A6B8C6] text-white shadow-[0_35px_90px_rgba(0,0,0,0.55)]"
             >
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(24,39,67,0.55),transparent_38%),radial-gradient(circle_at_85%_100%,rgba(24,39,67,0.35),transparent_40%)]" />
 
                 <div className="relative z-10 flex min-h-[calc(100dvh-1.5rem)] flex-col px-5 py-5 sm:px-7 sm:py-6 md:px-10 md:py-8">
                     <header className="flex items-center justify-between border-b border-white/10 pb-5">
-                        <p className="text-lg font-semibold tracking-tight text-white/95">showcasy.</p>
-                        <div className="flex items-center gap-3">
-                            <a
-                                href="#contact"
-                                onClick={handleClose}
-                                className="inline-flex h-10 items-center gap-2 rounded-full border border-white/20 px-4 text-sm text-white/90 transition-colors hover:bg-white/10"
-                            >
-                                Let&apos;s Talk
-                                <ArrowRight className="h-4 w-4" strokeWidth={1.8} />
-                            </a>
-                            <button
-                                type="button"
-                                onClick={handleClose}
-                                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/90 transition-colors hover:bg-white/10"
-                                aria-label="Close menu"
-                            >
-                                <X className="h-4 w-4" strokeWidth={2} />
-                            </button>
-                        </div>
+                        <p className="text-lg font-semibold tracking-tight text-white/95">syrasys</p>
                     </header>
 
                     <main className="flex-1 py-8 md:py-10">
@@ -190,22 +185,24 @@ export default function NavbarOpen({ onClose }: NavbarOpenProps) {
                             }}
                         >
                             <p className="mb-4 text-[1.05rem] font-medium text-white/70">Follow me.</p>
-                            <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-xs font-medium uppercase tracking-[0.08em] text-white/80">
-                                <a href="#" className="inline-flex items-center gap-1.5 hover:text-white">
-                                    Instagram
-                                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                            <div className="flex flex-wrap items-center gap-2.5">
+                                <a href="#" className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-white text-white transition-colors hover:bg-white hover:text-black" aria-label="Behance">
+                                    <FaBehance className="h-5 w-5" />
                                 </a>
-                                <a href="#" className="inline-flex items-center gap-1.5 hover:text-white">
-                                    Behance
-                                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                                <a href="#" className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-white text-white transition-colors hover:bg-white hover:text-black" aria-label="Dribbble">
+                                    <FaDribbble className="h-5 w-5" />
                                 </a>
-                                <a href="#" className="inline-flex items-center gap-1.5 hover:text-white">
-                                    Twitter
-                                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                                <a href="#" className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-white text-white transition-colors hover:bg-white hover:text-black" aria-label="Instagram">
+                                    <FaInstagram className="h-5 w-5" />
                                 </a>
-                                <a href="#" className="inline-flex items-center gap-1.5 hover:text-white">
-                                    Dribbble
-                                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                                <a href="#" className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-white text-white transition-colors hover:bg-white hover:text-black" aria-label="LinkedIn">
+                                    <FaLinkedinIn className="h-5 w-5" />
+                                </a>
+                                <a href="#" className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-white text-white transition-colors hover:bg-white hover:text-black" aria-label="X (Twitter)">
+                                    <FaXTwitter className="h-[18px] w-[18px]" />
+                                </a>
+                                <a href="#" className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1.5px] border-white text-white transition-colors hover:bg-white hover:text-black" aria-label="WhatsApp">
+                                    <FaWhatsapp className="h-5 w-5" />
                                 </a>
                             </div>
                         </section>
